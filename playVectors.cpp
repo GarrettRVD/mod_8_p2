@@ -5,6 +5,8 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <map>
+#include "Person.h"
 using namespace std;
 // Constants, Classes, Structures
 
@@ -62,6 +64,45 @@ int main()
 
     auto min = min_element(begin(v), end(v));
     cout << *min << endl;
+
+    // Now a vector of Objects
+    vector<Person> vp;
+    Person Waldo("Waldo", "Weber", 123);
+    Person Vandy("Vandy", "Vanderbilt", 678);
+    vp.push_back(Waldo);
+    vp.push_back(Vandy);
+    // Use iterator to get objects
+    for(auto ip = vp.begin(); ip != vp.end(); ip++)
+    {
+        cout << ip->GetName() << endl;
+        // This requires your object to have output << operator defined
+        cout << *ip << endl;
+    }
+    cout << Waldo << endl;
+
+    // Now, lets talk about MAPs
+    map<int, Person> people;
+    //          key <int>      =  value <Person>
+    people[Waldo.getArNumber()] = Waldo;
+    // IF the key exists, ou update the value,
+    // ElSE you create the value
+    people[Vandy.getArNumber()] = Vandy;
+
+    //for(auto item:people)
+    for(auto ip = people.begin(); ip != people.end(); ip++)
+    {
+        // the two components of my map are:
+        // key->first                       value->second
+        cout << ip->first << " " << ip->second.getFirstName() << endl;
+    }
+
+    Person Elmo("Elmo", "Street", 100);
+    people[123] = Elmo;
+    people[124] = Elmo;
+    for(auto item:people)
+    {
+        cout << item.first << " " << item.second.getFirstName() << endl;
+    }
 
     return 0;
 }

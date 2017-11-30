@@ -13,6 +13,7 @@ Person::Person(string fn, string ln, int an)
     //pResource = NULL;             // prior to C++11
     //Don't need for smart pointers
     //pResource = nullptr;            // C++11
+    //cout << "Constructing " << firstName << endl;
 }
 
 int Person::getArNumber()
@@ -37,6 +38,7 @@ Person::~Person()
 {
     //delete[] pResource;   // IF pResource points to an array
     //delete pResource;
+    //cout << "Deleting " << firstName << endl;
 }
 
 /*!
@@ -94,6 +96,15 @@ string Person::GetResourceName()
 {
     return pResource->GetName();
 }
+
+ostream &operator<<(ostream &os, const Person &person)
+{
+    os << "firstName: " << person.firstName << " lastName: " << person.lastName << " arNumber: " << person.arNumber;
+    return os;
+}
+
+Person::Person()
+{}
 
 /*!
  * Copy Constructor.

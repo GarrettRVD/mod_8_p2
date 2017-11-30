@@ -5,6 +5,7 @@
 #ifndef MOD_8_P2_PERSON_H
 #define MOD_8_P2_PERSON_H
 #include <memory>
+#include <ostream>
 #include "Resource.h"
 using namespace std;
 
@@ -18,6 +19,9 @@ private:
     shared_ptr<Resource> pResource;
 public:
     Person(string fn, string ln, int an);
+
+    Person();
+
     //Person(const Person &p);                  // copy constructor
     ~Person();
 
@@ -43,6 +47,9 @@ public:
     //Person&operator = (const Person &p);
 
     string GetResourceName();
+
+    friend ostream &operator<<(ostream &os, const Person &person);
+
 
 };
 bool operator < (int i, const Person &p);
